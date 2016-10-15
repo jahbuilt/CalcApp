@@ -6,16 +6,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText EditText1;
     String str1;
-    float float1;
+    double double1;
 
     EditText EditText2;
     String str2;
-    float float2;
+    double double2;
+
+    TextView textView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         EditText1 = (EditText) findViewById(R.id.editText1);
         EditText2 = (EditText) findViewById(R.id.editText2);
-
 
         Button button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(this);
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Button button4 = (Button) findViewById(R.id.button4);
         button4.setOnClickListener(this);
+
     }
 
     @Override
@@ -44,13 +48,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         str1 = EditText1.getText().toString();
         str2 = EditText2.getText().toString();
 
-        float1 = Float.parseFloat(str1);
-        float2 = Float.parseFloat(str2);
+        double1 = Double.parseDouble(str1);
+        double2 = Double.parseDouble(str2);
 
         Intent intent = new Intent(this, SecondActivity.class);
 
-        intent.putExtra("VALUE1", float1);
-        intent.putExtra("VALUE2", float2);
+        intent.putExtra("VALUE1", double1);
+        intent.putExtra("VALUE2", double2);
 
         if (v.getId() == R.id.button1) {
             intent.putExtra("VALUE3","+");
@@ -62,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("VALUE3","/");
         }
 
-        startActivity(intent);
+        TextView textView = (TextView) findViewById(R.id.textView);
+
+        if (str1.length() == 0 || str2.length() == 0) {
+            textView.setText("数字を入力してください");
+        } else if  (str1.length() != 0 && str2.length() != 0) {
+            startActivity(intent);
+        }
     }
 }

@@ -13,11 +13,24 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         Intent intent = getIntent();
-        int value1 = intent.getIntExtra("VALUE1", 0);
-        int value2 = intent.getIntExtra("VALUE2", 0);
-        int value3 = intent.getIntExtra("VALUE3", 0);
+        double value1 = intent.getDoubleExtra("VALUE1", 0);
+        double value2 = intent.getDoubleExtra("VALUE2", 0);
+        String value3 = intent.getStringExtra("VALUE3");
 
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(String.valueOf(value1 + value3+ value2));
+
+        double result = 0;
+        if (value3.equals ("+")) {
+            result = value1 + value2;
+        } else if (value3.equals("-")) {
+            result = value1 - value2;
+        } else if (value3.equals("*")) {
+            result = value1 * value2;
+        } else if (value3.equals("/")) {
+            result = value1 / value2;
+        }
+
+        textView.setText(String.valueOf(result));
+
     }
 }
