@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String str2;
     double double2;
 
-    TextView textView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +46,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         str1 = EditText1.getText().toString();
         str2 = EditText2.getText().toString();
 
-        double1 = Double.parseDouble(str1);
-        double2 = Double.parseDouble(str2);
+        TextView textView = (TextView) findViewById(R.id.textView);
+
+        if (str1 != null || str1.length() > 0) {
+            double1 = Double.parseDouble(str1);
+        }
+        if (str2 != null || str2.length() > 0) {
+            double2 = Double.parseDouble(str2);
+        } else {
+            textView.setText("数字を入力してください");
+        }
 
         Intent intent = new Intent(this, SecondActivity.class);
 
@@ -57,21 +63,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.putExtra("VALUE2", double2);
 
         if (v.getId() == R.id.button1) {
-            intent.putExtra("VALUE3","+");
+            intent.putExtra("VALUE3", "+");
         } else if (v.getId() == R.id.button2) {
-            intent.putExtra("VALUE3","-");
+            intent.putExtra("VALUE3", "-");
         } else if (v.getId() == R.id.button3) {
-            intent.putExtra("VALUE3","*");
+            intent.putExtra("VALUE3", "*");
         } else if (v.getId() == R.id.button4) {
-            intent.putExtra("VALUE3","/");
+            intent.putExtra("VALUE3", "/");
         }
 
-        TextView textView = (TextView) findViewById(R.id.textView);
+        startActivity(intent);
 
-        if (str1.length() == 0 || str2.length() == 0) {
-            textView.setText("数字を入力してください");
-        } else if  (str1.length() != 0 && str2.length() != 0) {
-            startActivity(intent);
-        }
     }
+
+
 }
+
