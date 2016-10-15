@@ -48,10 +48,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         TextView textView = (TextView) findViewById(R.id.textView);
 
-        if (str1 != null || str1.length() > 0) {
+        if (str1 != null && str1.length() > 0) {
             double1 = Double.parseDouble(str1);
+        } else {
+            textView.setText("数字を入力してください");
         }
-        if (str2 != null || str2.length() > 0) {
+
+        if (str2 != null && str2.length() > 0) {
             double2 = Double.parseDouble(str2);
         } else {
             textView.setText("数字を入力してください");
