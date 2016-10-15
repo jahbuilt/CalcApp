@@ -50,14 +50,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (str1 != null && str1.length() > 0) {
             double1 = Double.parseDouble(str1);
-        } else {
-            textView.setText("数字を入力してください");
         }
-
         if (str2 != null && str2.length() > 0) {
             double2 = Double.parseDouble(str2);
-        } else {
-            textView.setText("数字を入力してください");
         }
 
         Intent intent = new Intent(this, SecondActivity.class);
@@ -74,11 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == R.id.button4) {
             intent.putExtra("VALUE3", "/");
         }
-
-        startActivity(intent);
+        if (str1 == null || str1.length() == 0 || str2 == null || str2.length() == 0) {
+            textView.setText("数字を入力してください");
+        } else {
+            startActivity(intent);
+        }
 
     }
-
 
 }
 
